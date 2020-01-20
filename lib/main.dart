@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-
+import './login.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:RandomWords(),
+      home:LoginPage(),
     );
   }
 }
@@ -79,22 +79,26 @@ class RandomWordsState extends State<RandomWords> {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
-
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
-          return _buildRow(_suggestions[index]);
+          if (i.isOdd) {
+            return Divider();
+          } else {
+            final index = i ~/ 2; /*3*/
+            if (index >= _suggestions.length) {
+              _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+            }
+            return _buildRow(_suggestions[index]);
+          } /*2*/
         });
   }
 
   Widget _buildRow(WordPair pair) {
     final bool alreadySaved = _saved.contains(pair);
     return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
+      title: Center(
+        child: Text(
+          pair.asPascalCase,
+          style: _biggerFont,
+        ),
       ),
       trailing: new Icon(
         // 新增代码开始 ...
