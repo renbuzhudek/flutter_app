@@ -21,7 +21,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:LoginPage(),
+      home:LoginPage(title: 'h5'), //TODO:这里怎么玩的
+      routes: <String, WidgetBuilder> {
+        '/a': (BuildContext context) => LoginPage(title: 'page A'),
+        '/b': (BuildContext context) => LoginPage(title: 'page B'),
+        '/c': (BuildContext context) => LoginPage(title: 'page C'),
+      },
     );
   }
 }

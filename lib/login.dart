@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-
+import './onePage.dart';
 class LoginPage extends StatefulWidget {
 //  LoginPage({Key key}) : super(key: key);
-
+  const LoginPage({Key key, this.title}) : super(key: key);
+  final String title;
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -24,7 +25,8 @@ class _LoginPageState extends State<LoginPage> {
 
     Navigator.of(context)
         .push(new MaterialPageRoute<void>(builder: (BuildContext context) {
-      return Browser(url:'https://www.baidu.com',title:'这是一个H5');
+          return onePage();
+//      return Browser(url:'https://www.baidu.com',title:widget.title);
     }));
   }
 
@@ -37,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/background.jpg'),
+            image: NetworkImage('http://a3.att.hudong.com/68/61/300000839764127060614318218_950.jpg'),
             fit: BoxFit.cover,
           ),
         ),
